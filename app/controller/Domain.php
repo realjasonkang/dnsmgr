@@ -1147,7 +1147,8 @@ class Domain extends BaseController
         }
 
         $dns = DnsHelper::getModel($drow['aid'], $drow['name'], $drow['thirdid']);
-        $domainAliasList = $dns->domainAliasList() ?? [];
+        $domainAliasList = $dns->domainAliasList();
+        if ($domainAliasList === false) $domainAliasList = [];
 
         $this->updateAliasList($id, $domainAliasList);
 
